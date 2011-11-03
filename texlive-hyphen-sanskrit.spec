@@ -1,5 +1,11 @@
+# revision 23092
+# category TLCore
+# catalog-ctan undef
+# catalog-date undef
+# catalog-license undef
+# catalog-version undef
 Name:		texlive-hyphen-sanskrit
-Version:	20111102
+Version:	20111103
 Release:	1
 Summary:	Sanskrit hyphenation patterns
 Group:		Publishing
@@ -48,6 +54,7 @@ and Telugu scripts for Unicode engines.
 %_texmf_language_dat_d/hyphen-sanskrit
 %_texmf_language_def_d/hyphen-sanskrit
 %_texmf_language_lua_d/hyphen-sanskrit
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -56,6 +63,8 @@ and Telugu scripts for Unicode engines.
 %build
 
 %install
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-sanskrit <<EOF
 %% from hyphen-sanskrit:
