@@ -46,12 +46,12 @@ and Telugu scripts for Unicode engines.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-sanskrit <<EOF
-%% from hyphen-sanskrit:
+\%\% from hyphen-sanskrit:
 sanskrit loadhyph-sa.tex
 EOF
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-sanskrit <<EOF
-%% from hyphen-sanskrit:
+\%\% from hyphen-sanskrit:
 \addlanguage{sanskrit}{loadhyph-sa.tex}{}{1}{5}
 EOF
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
