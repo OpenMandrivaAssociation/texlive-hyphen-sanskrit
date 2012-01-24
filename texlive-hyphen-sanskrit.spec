@@ -5,8 +5,8 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-hyphen-sanskrit
-Version:	20111103
-Release:	2
+Version:	20120124
+Release:	1
 Summary:	Sanskrit hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -46,14 +46,16 @@ and Telugu scripts for Unicode engines.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-sanskrit <<EOF
-\%\% from hyphen-sanskrit:
+\%% from hyphen-sanskrit:
 sanskrit loadhyph-sa.tex
 EOF
+perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_dat_d}/hyphen-sanskrit
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-sanskrit <<EOF
-\%\% from hyphen-sanskrit:
+\%% from hyphen-sanskrit:
 \addlanguage{sanskrit}{loadhyph-sa.tex}{}{1}{5}
 EOF
+perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_def_d}/hyphen-sanskrit
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
 cat > %{buildroot}%{_texmf_language_lua_d}/hyphen-sanskrit <<EOF
 -- from hyphen-sanskrit:
