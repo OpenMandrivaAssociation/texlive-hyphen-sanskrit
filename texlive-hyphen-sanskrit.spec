@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-hyphen-sanskrit
 Version:	20131011
-Release:	2
+Release:	3
 Summary:	Sanskrit hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
