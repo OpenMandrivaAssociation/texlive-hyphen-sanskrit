@@ -5,7 +5,7 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-hyphen-sanskrit
-Version:	20170414
+Version:	20180303
 Release:	1
 Summary:	Sanskrit hyphenation patterns
 Group:		Publishing
