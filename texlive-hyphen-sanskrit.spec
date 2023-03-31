@@ -1,6 +1,6 @@
 Name:		texlive-hyphen-sanskrit
 Version:	58652
-Release:	1
+Release:	2
 Summary:	Sanskrit hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
