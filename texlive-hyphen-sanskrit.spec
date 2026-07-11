@@ -1,69 +1,23 @@
-Name:		texlive-hyphen-sanskrit
-Version:	73410
+%global tl_name hyphen-sanskrit
+%global tl_revision 78069
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
 Release:	1
-Summary:	Sanskrit hyphenation patterns
+Summary:	Sanskrit hyphenation patterns.
 Group:		Publishing
-URL:		https://tug.org/texlive
-License:	http://www.tug.org/texlive/LICENSE.TL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-sanskrit.r%{version}.tar.xz
+URL:		https://www.ctan.org/pkg/hyphen-sanskrit
+License:	LPPL
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-sanskrit.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-sanskrit.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-hyphen-base
-Requires:	texlive-hyph-utf8
+BuildSystem:	texlive
+Requires:	texlive(hyph-utf8)
+Requires:	texlive(hyphen-base)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Hyphenation patterns for Sanskrit and Prakrit in
-transliteration, and in Devanagari, Bengali, Kannada, Malayalam
-and Telugu scripts for Unicode engines.
+Hyphenation patterns for Sanskrit and Prakrit in transliteration, and in
+Devanagari, Bengali, Kannada, Malayalam and Telugu scripts for Unicode
+engines.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/generic/hyph-utf8/loadhyph/*
-%{_texmfdistdir}/tex/generic/hyph-utf8/patterns/*/*
-%_texmf_language_dat_d/hyphen-sanskrit
-%_texmf_language_def_d/hyphen-sanskrit
-%_texmf_language_lua_d/hyphen-sanskrit
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex %{buildroot}%{_texmfdistdir}
-
-mkdir -p %{buildroot}%{_texmf_language_dat_d}
-cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-sanskrit <<EOF
-\%% from hyphen-sanskrit:
-sanskrit loadhyph-sa.tex
-EOF
-perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_dat_d}/hyphen-sanskrit
-mkdir -p %{buildroot}%{_texmf_language_def_d}
-cat > %{buildroot}%{_texmf_language_def_d}/hyphen-sanskrit <<EOF
-\%% from hyphen-sanskrit:
-\addlanguage{sanskrit}{loadhyph-sa.tex}{}{1}{3}
-EOF
-perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_def_d}/hyphen-sanskrit
-mkdir -p %{buildroot}%{_texmf_language_lua_d}
-cat > %{buildroot}%{_texmf_language_lua_d}/hyphen-sanskrit <<EOF
--- from hyphen-sanskrit:
-	['sanskrit'] = {
-		loader = 'loadhyph-sa.tex',
-		lefthyphenmin = 1,
-		righthyphenmin = 3,
-		synonyms = {  },
-		patterns = 'hyph-sa.pat.txt',
-		hyphenation = '',
-	},
-EOF
